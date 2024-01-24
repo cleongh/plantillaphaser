@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start",
+			"label": "npm: start",
+			"detail": "npx parcel index.html",
+			"isBackground": true
+		},
+		{
+			"type": "npm",
+			"script": "install",
+			"group": "clean",
+			"label": "npm: install",
+			"detail": "install dependencies from package"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"label": "npm: build",
+			"detail": "npx parcel build index.html --public-url ./ --dist-dir docs"
+		}
+	]
+}
