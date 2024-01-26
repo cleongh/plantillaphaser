@@ -43,3 +43,7 @@ Está todo configurado para que se active "GitHub Pages", y se use, en la rama p
 ## VSCode
 
 En la carpeta `.vscode/` hay una configuración para usar Visual Studio Code, tanto para construir el *release* (`npm run build`) como para ejecutar y depurar. Simplemente hay que ejecutar "Run" → "Start debugging..." (or presionar `F5`).
+
+## TypeScript
+
+TypeScript está automáticamente habilitado (gracias a Parcel). Para usarlo, simplemente hay que crear archivos con extensión `.ts`.
