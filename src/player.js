@@ -1,5 +1,5 @@
 import Star from './star.ts';
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -14,8 +14,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, 'player');
+        super(scene, x, y, 'player');	
         this.score = 0;
+	
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         // Queremos que el jugador no se salga de los límites del mundo
