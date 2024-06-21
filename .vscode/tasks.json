@@ -6,12 +6,14 @@
 			"script": "start",
 			"label": "npm: start",
 			"detail": "npx parcel index.html",
-			"isBackground": true
+			"dependsOn": "npm: install",
+			"isBackground": true,
+			"problemMatcher": []
 		},
 		{
 			"type": "npm",
 			"script": "install",
-			"group": "clean",
+			"group": "build",
 			"label": "npm: install",
 			"detail": "install dependencies from package"
 		},
