@@ -1,10 +1,10 @@
 {
-    "name": "simplephasergamenode",
+    "name": "plantillaphaser",
     "version": "1.0.0",
-    "description": "",
+    "description": "Plantilla para juegos con Phaser",
     "scripts": {
-        "start": "npx parcel index.html",
-        "build": "npx parcel build index.html --public-url ./ --dist-dir docs"
+        "start": "npx vite",
+        "build": "npx vite build --base=/ --outDir docs/"
     },
     "repository": {
         "type": "git",
@@ -17,9 +17,9 @@
         "url": "https://github.com/cleongh/plantillaphaser/issues"
     },
     "homepage": "https://github.com/cleongh/plantillaphaser#readme",
+    "type": "module",
     "devDependencies": {
-        "parcel": "2.12.0",
-        "process": "0.11.10"
+        "vite": "5.4.6"
     },
     "dependencies": {
         "phaser": "3.85.2"

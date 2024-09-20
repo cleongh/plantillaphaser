@@ -5,14 +5,13 @@
 			"type": "npm",
 			"script": "start",
 			"label": "npm: start",
-			"detail": "npx parcel index.html",
 			"dependsOn": "npm: install",
 			"isBackground": true,
 			"problemMatcher": {
 				"background": {
 					"activeOnStart": true,
 					"beginsPattern": ".*",
-					"endsPattern": "Built"
+					"endsPattern": "ready in"
 				},
                 "pattern": {
                     "regexp": "",
@@ -31,8 +30,7 @@
 			"script": "build",
 			"group": "build",
 			"dependsOn": "npm: install",
-			"label": "npm: build",
-			"detail": "npx parcel build index.html --public-url ./ --dist-dir docs"
+			"label": "npm: build"
 		}
 	]
 }
