@@ -18,10 +18,10 @@
     },
     "homepage": "https://github.com/cleongh/plantillaphaser#readme",
     "devDependencies": {
-        "parcel": "^2.10.3",
-        "process": "^0.11.10"
+        "parcel": "2.12.0",
+        "process": "0.11.10"
     },
     "dependencies": {
-        "phaser": "^3.70.0"
+        "phaser": "3.85.2"
     }
 }

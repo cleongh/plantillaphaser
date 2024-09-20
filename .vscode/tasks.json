@@ -8,7 +8,16 @@
 			"detail": "npx parcel index.html",
 			"dependsOn": "npm: install",
 			"isBackground": true,
-			"problemMatcher": []
+			"problemMatcher": {
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": ".*",
+					"endsPattern": "Built"
+				},
+                "pattern": {
+                    "regexp": "",
+                }
+			}
 		},
 		{
 			"type": "npm",
@@ -21,6 +30,7 @@
 			"type": "npm",
 			"script": "build",
 			"group": "build",
+			"dependsOn": "npm: install",
 			"label": "npm: build",
 			"detail": "npx parcel build index.html --public-url ./ --dist-dir docs"
 		}
