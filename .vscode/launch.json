@@ -7,13 +7,11 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:5174",
+            "name": "Construir y depurar juego",
+            "url": "http://localhost:5173",
             "webRoot": "${workspaceFolder}",
-            "sourceMapPathOverrides": {
-              "/__parcel_source_root/*": "${webRoot}/*"
-            },
             "preLaunchTask": "npm: start",
+            "postDebugTask": "terminar tareas"
         }
     ]
 }
