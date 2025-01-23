@@ -4,7 +4,7 @@
     "description": "Plantilla para juegos con Phaser",
     "scripts": {
         "start": "npx vite",
-        "build": "npx vite build --base=/ --outDir docs/"
+        "build": "npx vite build --outDir docs/"
     },
     "repository": {
         "type": "git",
