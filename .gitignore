@@ -109,3 +109,4 @@ dist
 .~
 src/star.ts~
 /.parcelrc~
+*~

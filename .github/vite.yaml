@@ -1,0 +1,92 @@
+name: Deploy game to GH Pages
+
+on:
+  # Runs on pushes targeting the any branch
+  push:
+    branches: ["**"]
+
+  # Allows for manual triggering
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Parcel build
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Fetch the whole repo
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Setup pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Build
+        run: |
+          # Create pages directory
+          mkdir pages
+          branches=()
+          # Find all remote branches
+          eval "$(git for-each-ref --shell --format='branches+=(%(refname:lstrip=3))' refs/remotes/origin/)"
+          links=""
+          for branch in "${branches[@]}"; do
+              # Build each branch and move to pages directory
+              git restore .
+              rm -rf docs
+              if ! git checkout refs/remotes/origin/"$branch" ; then
+                links="${links}<li>${branch}. Build failed: Failed to check out branch</li>"
+                continue
+              fi
+
+              if ! npm install ; then
+                links="${links}<li>${branch}. Build failed: Failed to install dependencies</li>"
+                continue
+              fi
+
+              if ! npm run build ; then
+                links="${links}<li>${branch}. Build failed: Failed to build project</li>"
+                continue
+              fi
+
+              if ! mkdir --parents "pages/${branch}" ; then
+                links="${links}<li>${branch}. Build failed: Failed to create branch directory</li>"
+                continue
+              fi
+
+              if ! mv docs/* "pages/${branch}" ; then
+                links="${links}<li>${branch}. Build failed: Failed to move directory</li>"
+                continue
+              fi
+              # Add link
+              links="${links}<li><a href=\"${branch}\">${branch}</a></li>"
+          done
+          # Create index page
+          echo "<h1>DVI - Navegador</h1><ul>${links}</ul>" > "pages/index.html"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./pages
+  
+  # Deployment
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
