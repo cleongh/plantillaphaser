@@ -13,9 +13,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, 'player');	
+        super(scene, x, y, 'player');
         this.score = 0;
-	
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         // Queremos que el jugador no se salga de los límites del mundo
@@ -23,7 +23,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.speed = 300;
         this.jumpSpeed = -400;
         // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.label = this.scene.add.text(10, 10, "", {fontSize: 20});
+        this.label = this.scene.add.text(10, 10, "", { fontSize: 20 });
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.updateScore();
     }
