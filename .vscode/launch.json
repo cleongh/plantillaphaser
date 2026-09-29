@@ -7,11 +7,51 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Construir y depurar juego",
+            "name": "Ejecutar en navegador",
             "url": "http://localhost:5173",
             "webRoot": "${workspaceFolder}",
             "preLaunchTask": "npm: start",
-            "postDebugTask": "terminar tareas"
+            "postDebugTask": "terminar vite"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "name": "Construir y depurar en electron",
+            "program": "${workspaceRoot}/main.js",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "presentation": {
+                "hidden": true
+            },
+            "preLaunchTask": "npm: start",
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ],
+            "env": {
+                "VITE_DEV_SERVER_URL": "http://localhost:5173/plantillaphaser/"
+            },
+            "postDebugTask": "terminar vite"
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Depurar renderer de Electron",
+            "presentation": {
+                "hidden": true
+            },
+            "port": 9222,
+            "webRoot": "${workspaceFolder}/..",
+            "timeout": 30000
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Ejecutar en Electron",
+            "configurations": [
+                "Construir y depurar en electron",
+                "Depurar renderer de Electron"
+            ],
+            "stopAll": true
         }
     ]
 }

@@ -12,11 +12,10 @@ import Level from './level.js'
 export default class Star extends Phaser.GameObjects.Sprite {
 
     base: Base
-    scene: Level
 
     /**
      * Constructor de Star
-     * @param {Sceme} scene Escena en la que aparece la estrella
+     * @param {Scene} scene Escena en la que aparece la estrella
      * @param {Base} base Objeto base sobre el que se va a dibujar la estrella
      * @param {number} x coordenada x
      * @param {number} y coordenada y
@@ -38,10 +37,10 @@ export default class Star extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, d);
-        if (this.scene.physics.overlap(this.scene.player as Player, this)) {
+        if (this.scene.physics.overlap((this.scene as Level).player as Player, this)) {
             // Delegamos en la escena para decidir qué hacer al 
             // haber cogido una estrella
-            this.scene.starPickt(this.base);
+            (this.scene as Level).starPickt(this.base);
             this.destroy();
         }
     }

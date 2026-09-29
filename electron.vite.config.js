@@ -1,35 +1,29 @@
-import { defineConfig } from "electron-vite";
-// import react from '@vitejs/plugin-react';
-import { resolve } from 'path'
+import { defineConfig } from 'vite';
+
+import path from 'path';
+
+import electron from 'vite-plugin-electron/simple'
+
+
 export default defineConfig({
-    publicDir: false,
-    main: {
-        build: {
-            rollupOptions: {
-                input: {
-                    index: resolve(__dirname, 'main.js')
-                }
-            }
-        }
+    build: {
+      chunkSizeWarningLimit: 5000,
+      outDir: 'dist',
+      rolldownOptions: {
+        input: 'index.electron.html',
+      },
     },
-    preload: {
-        build: {
-            rollupOptions: {
-                input: {
-                    index: resolve(__dirname, 'preload.js')
-                }
-            }
-        }
-    },
-    renderer: {
-        // plugins: [/* react() */],
-        root: '.',
-        build: {
-            rollupOptions: {
-                input: {
-                    index: resolve(__dirname, 'index.electron.html')
-                }
-            }
-        }
-    }
+    base:  "./",//path.basename(import.meta.dirname),
+    plugins: [
+    electron({
+      main: {
+        // Shortcut of `build.lib.entry`
+        entry: 'main.js',
+      },
+      preload: {
+        // Shortcut of `build.rolldownOptions.input` (`build.rollupOptions.input` on Vite < 8)
+        input: 'preload.js',
+      },
+    }),
+  ],
 });

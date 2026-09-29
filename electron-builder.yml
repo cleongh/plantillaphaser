@@ -2,6 +2,7 @@ appId: com.electron.app
 productName: vue-ts
 directories:
   buildResources: build
+  output: release
 files:
   - '!**/.vscode/*'
   - '!src/*'
