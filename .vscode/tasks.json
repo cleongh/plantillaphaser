@@ -13,39 +13,51 @@
 					"beginsPattern": ".*",
 					"endsPattern": "ready in"
 				},
-                "pattern": {
-                    "regexp": "",
-                }
+				"pattern": {
+					"regexp": "",
+				}
 			}
 		},
 		{
 			"type": "npm",
-			"script": "install",
-			"group": "build",
-			"label": "npm: install",
-			"detail": "install dependencies from package"
+			"script": "electron",
+			"label": "npm: electron",
+			"dependsOn": "npm: install",
+			"isBackground": true,
+			"problemMatcher": {
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": ".*",
+					"endsPattern": "ready in"
+				},
+				"pattern": {
+					"regexp": "",
+				}
+			}
 		},
 		{
 			"type": "npm",
-			"script": "build",
+			"script": "release:electron",
 			"group": "build",
 			"dependsOn": "npm: install",
-			"label": "npm: build"
+			"label": "Construir release con Electron"
 		},
 		{
-			"label": "terminar tareas",
-			"command": "echo ${input:terminate}",
-			"type": "shell",
+			"label": "terminar vite",
+			"type": "process",
+			"command": "echo",
+			"args": [
+				"${input:terminateVite}"
+			],
 			"problemMatcher": []
-		  }
+		}
+	],
+	"inputs": [
+		{
+			"id": "terminateVite",
+			"type": "command",
+			"command": "workbench.action.tasks.terminate",
+			"args": "npm: start"
+		}
 	]
-	,
-  "inputs": [
-    {
-      "id": "terminate",
-      "type": "command",
-      "command": "workbench.action.tasks.terminate",
-      "args": "terminateAll"
-    }
-  ]
 }

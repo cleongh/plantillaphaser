@@ -1,16 +1,19 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
-// import html from './index.html?url'
+// import html from './index.electron.html?url'
+
 
 let mainWindow;
 
 function createWindow() {
     mainWindow = new BrowserWindow({});
-    mainWindow.menuBarVisible
+    // mainWindow.menuBarVisible
     mainWindow.setMenu(null);
-    // Vite dev server URL
-    // mainWindow.loadURL('http://localhost:5173');
-    mainWindow.loadFile("out/renderer/index.electron.html");
+    if (process.env.VITE_DEV_SERVER_URL) {
+        mainWindow.loadURL(new URL('index.electron.html', process.env.VITE_DEV_SERVER_URL).toString());
+    } else {
+        mainWindow.loadFile(path.join(import.meta.dirname, '../dist/index.electron.html'));
+    }
     mainWindow.on('closed', () => mainWindow = null);
 }
 

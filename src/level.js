@@ -41,8 +41,9 @@ export default class Level extends Phaser.Scene {
      * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
      * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
      */
-    spawn(from = null) {
-        Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
+    spawn(from = null) {	
+        
+        Phaser.Math.RND.pick(from || [...this.bases.children]).spawn();
     }
 
     /**
@@ -55,9 +56,8 @@ export default class Level extends Phaser.Scene {
         if (this.player.score == this.stars) {
             this.scene.start('end');
         }
-        else {
-            let s = this.bases.children.entries;
-            this.spawn(s.filter(o => o !== base));
+        else {            
+            this.spawn([...this.bases.children].filter(o => o !== base));
 
         }
     }

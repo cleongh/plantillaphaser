@@ -4,6 +4,12 @@
 
 El repositorio está publicado como plantilla, de forma que se puede crear un nuevo proyecto propio en GitHub simplemente pulsando el botón `Use this template` (arriba a la derecha). Después, solo hay que clonar el repositorio propio y trabajar sobre él.
 
+## Publicar
+
+Para publicar, hay que asegurarse de que en `Settings` 🡒 `Pages` tiene en `Source` la opción `GitHub Actions`.
+
+Además es útil que en la sección de `About`, en las opciones (rueda dentada), en `Website` se active `Use your GitHub Pages website`.
+
 ## Clonar
 
 También se puede clonar el repositorio:
@@ -19,6 +25,10 @@ Para iniciar el proyecto (sólo 1 vez) instalamos las dependencias automáticame
 ```
 npm install
 ```
+
+## Electron y navegador
+
+La plantilla funciona con Electron (para ver una ventana de escritorio) y en navegador. Ambas opciones permiten depuración.
 
 ## Uso
 
