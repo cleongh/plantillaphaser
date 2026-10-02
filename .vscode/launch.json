@@ -28,7 +28,7 @@
                 "--remote-debugging-port=9222"
             ],
             "env": {
-                "VITE_DEV_SERVER_URL": "http://localhost:5173/plantillaphaser/"
+                "VITE_DEV_SERVER_URL": "http://localhost:5173/"
             },
             "postDebugTask": "terminar vite"
         },
@@ -40,7 +40,7 @@
                 "hidden": true
             },
             "port": 9222,
-            "webRoot": "${workspaceFolder}/..",
+            "webRoot": "${workspaceFolder}",
             "timeout": 30000
         }
     ],

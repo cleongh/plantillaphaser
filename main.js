@@ -9,6 +9,7 @@ function createWindow() {
     mainWindow = new BrowserWindow({});
     // mainWindow.menuBarVisible
     mainWindow.setMenu(null);
+
     if (process.env.VITE_DEV_SERVER_URL) {
         mainWindow.loadURL(new URL('index.electron.html', process.env.VITE_DEV_SERVER_URL).toString());
     } else {
