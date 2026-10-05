@@ -23,6 +23,11 @@
 			"script": "electron",
 			"label": "npm: electron",
 			"dependsOn": "npm: install",
+			"options": {
+				"env": {
+					"REMOTE_DEBUGGING_PORT": "9222"
+				}
+			},
 			"isBackground": true,
 			"problemMatcher": {
 				"background": {
@@ -50,6 +55,15 @@
 				"${input:terminateVite}"
 			],
 			"problemMatcher": []
+		},
+		{
+			"label": "terminar electron",
+			"type": "process",
+			"command": "echo",
+			"args": [
+				"${input:terminateElectron}"
+			],
+			"problemMatcher": []
 		}
 	],
 	"inputs": [
@@ -58,6 +72,12 @@
 			"type": "command",
 			"command": "workbench.action.tasks.terminate",
 			"args": "npm: start"
+		},
+		{
+			"id": "terminateElectron",
+			"type": "command",
+			"command": "workbench.action.tasks.terminate",
+			"args": "npm: electron"
 		}
 	]
 }

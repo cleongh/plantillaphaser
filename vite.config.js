@@ -1,10 +1,8 @@
 import { defineConfig } from 'vite';
 
-import path from 'path';
-
-
+const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1];
 
 export default defineConfig({
-    build: { chunkSizeWarningLimit: 5000 },
-    base:  "/"
+  build: { chunkSizeWarningLimit: 5000 },
+  base: repositoryName ? `/${repositoryName}/` : '/',
 });
